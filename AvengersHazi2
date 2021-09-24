@@ -1,0 +1,180 @@
+using System;
+
+namespace Hazi_Feladat
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Házi feladat: (2 labor pont, határidő: 09. 26. 23:59) beadás e-mailben zip - elve vagy OneDrive/ Google Drive linken
+            //csuzdi.bence @nik.uni - obuda.hu
+            //(Természetesen az input adatoktól a lenti feladatok eredményei különbözőek lesznek).
+            //Ha kérdésetek lenne, nyugodtan keressetek.
+
+            //Készítsük el kedvenc bosszúállóink csapatát
+            Console.Write("Hány bosszúállót szeretnél elkészíteni? ");
+            int n = int.Parse(Console.ReadLine());
+            int i = 0;
+
+            /* Ez elég csúnya, hogy minden adatot külön tárolunk róluk.
+             Milyen jó lenne egy olyan típus, ami egy bosszúállót tudna kezelni, nem? (spoiler: később => structok, osztályok) */
+            string[] avengersNames = new string[n];
+            string[] avengersPowers = new string[n];
+            double[] avengersHeights = new double[n];
+            int[] avengersStrengths = new int[n];
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine($"{ i + 1}. bosszúálló ");
+                Console.Write($"neve: ");
+                string name = Console.ReadLine();
+                Console.Write($"magassága: ");
+                double height = double.Parse(Console.ReadLine());
+                Console.Write($"szuperképessége: ");
+                string power = Console.ReadLine();
+                Console.Write($"szuperképesség ereje (szám): ");
+                int strength = int.Parse(Console.ReadLine());
+
+                avengersNames[i] = name;
+                avengersHeights[i] = height;
+                avengersPowers[i] = power;
+                avengersStrengths[i] = strength;
+                i++;
+            } while (i < n);
+
+            //int max = avengersStrengths[0];
+            //legerősebb hős index keresése
+            int maxindex = 0;
+
+            for (i = 0; i < avengersStrengths.Length; i++)
+            {
+                if (avengersStrengths[maxindex] < avengersStrengths[i])
+                {
+                    maxindex = i;
+                }
+            }
+            Console.WriteLine("Thanost le tudná győzni: ");
+            //int[] strongerThanThanos = new int[];
+            //akiknek nagyobb a sebzésük mint 10000
+            for (int j = 0; j < avengersStrengths.Length; j++)
+            {
+                if (avengersStrengths[j] > 10000)
+                {
+                    Console.WriteLine(avengersNames[j]);
+                }
+            }
+
+            Console.WriteLine("A legerősebb hős neve: " + avengersNames[maxindex]);
+
+
+
+            //Console.WriteLine("A szám helye: {0}, értéke: {1}", maxindex, avengersStrengths[maxindex]);
+
+            //Console.WriteLine("[{0}]", string.Join(", ", avengersStrengths));
+            //Console.ReadKey();
+
+            // Egészítsük ki a programot: a fentebbi feladatok után lehetőség legyen az eddigi bosszúállókhoz felvenni újat (c)
+            // Figyelem: új tömb létrehozás, másolás az új tömbbe, majd visszamásolás.
+
+            // Írjuk ki, hogy hány 200 cm feletti magasságú bosszúállónk van? (d)
+            Console.WriteLine("200cm-nél magasabb bosszúállók: ");
+            for (int k = 0; k < avengersHeights.Length; k++)
+            {
+                if (avengersHeights[k] > 200)
+                {
+                    Console.WriteLine(avengersNames[k]);
+                }
+            }
+
+            // Van olyan bosszúálló akinek szám van a nevében? (e) Segítség: char.IsDigit()
+
+
+            //folytatas, ha akar plusz hőst felvenni
+            Console.WriteLine("Kilépéshez nyomj 0-t. Új bosszúállók hozzáadásához nyomj 1-est. ");
+            int followingStep = int.Parse(Console.ReadLine());
+
+            if (followingStep == 0)
+            {
+                Console.WriteLine("Program vége");
+            }
+            if (followingStep == 1)
+            {
+                Console.WriteLine("Vegyél fel még több bosszúállót!");
+                Console.Write("Hány bosszúállót szeretnél elkészíteni? ");
+                int newHeroes = int.Parse(Console.ReadLine());
+                int k = 0;
+
+                string[] avengersNames2 = new string[newHeroes];
+                string[] avengersPowers2 = new string[newHeroes];
+                double[] avengersHeights2 = new double[newHeroes];
+                int[] avengersStrengths2 = new int[newHeroes];
+
+                do
+                {
+
+                    Console.Clear();
+                    Console.WriteLine($"{ k + 1}. bosszúálló ");
+                    Console.Write($"neve: ");
+                    string name = Console.ReadLine();
+                    Console.Write($"magassága: ");
+                    double height = double.Parse(Console.ReadLine());
+                    Console.Write($"szuperképessége: ");
+                    string power = Console.ReadLine();
+                    Console.Write($"szuperképesség ereje (szám): ");
+                    int strength = int.Parse(Console.ReadLine());
+
+                    avengersNames2[k] = name;
+                    avengersHeights2[k] = height;
+                    avengersPowers2[k] = power;
+                    avengersStrengths2[k] = strength;
+                    k++;
+                } while (k < newHeroes);
+
+
+                //végső tömb, amibe menne bele minden
+                string[] avengersNames3 = new string[n + newHeroes];
+                string[] avengersPowers3 = new string[n + newHeroes];
+                double[] avengersHeights3 = new double[n + newHeroes];
+                int[] avengersStrengths3 = new int[n + newHeroes];
+
+                for (k = 0; k < avengersNames.Length; k++)
+                {
+                    avengersNames2[k] = avengersNames[k];
+                }
+                for (k = 0; k < avengersPowers.Length; k++)
+                {
+                    avengersPowers2[k] = avengersPowers[k];
+                }
+                for (k = 0; k < avengersHeights.Length; k++)
+                {
+                    avengersHeights2[k] = avengersHeights[k];
+                }
+                for (k = 0; k < avengersStrengths.Length; k++)
+                {
+                    avengersStrengths2[k] = avengersStrengths[k];
+                }
+
+                for (k = 0; k < avengersNames2.Length; k++)
+                {
+                    avengersNames3[k] = avengersNames2[k];
+                }
+                for (k = 0; k < avengersPowers2.Length; k++)
+                {
+                    avengersPowers3[k] = avengersPowers2[k];
+                }
+                for (k = 0; k < avengersHeights2.Length; k++)
+                {
+                    avengersHeights3[k] = avengersHeights2[k];
+                }
+                for (k = 0; k < avengersStrengths2.Length; k++)
+                {
+                    avengersStrengths3[k] = avengersStrengths2[k];
+                }
+
+                Console.WriteLine("[{0}]", string.Join(", ", avengersStrengths3));
+                Console.ReadKey();
+            }
+        }
+    }
+}
