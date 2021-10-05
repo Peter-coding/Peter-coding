@@ -1,0 +1,44 @@
+using System;
+
+namespace _5_gyak
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+            Legyen egy n elemű tömb, focicsapatok neve benne
+            legyen egy n tömb, a csapatok erőssége int
+            legyen egy n*n*2 mátrix, ami az egymással játszott meccseket tartalmazza   int[,,]
+            minden elemen egy számpár van, ezek tárolják a gólokat (keresztátlón önmagával játszana, így nincs semmi)
+
+            Megírandó metódusok
+                -static int[,,] GenerateResults(int[] teamPowers)
+                    0 és 10 közötti random szám a gól (A és B csapathoz)
+                    (Ha az egyik csapat ereje nagyobb, mint a másik, akkor az 90% eséllyel kapja a nagyobb gólszámot)
+                -static int[] GetPoints(int[,,] results)
+                    visszaadja a csapatok pontjait (meccsen több gólt rugó csapat 3p, azonos gólszám 1p)
+                -static void DisplayLeagueTable(int[] points, string[] teams)
+                -static void DisplayMatches (int[,,] results, string[] teams)
+                    pl.: (1,0) -> Barcelona 1 : 0 Real Madrid
+                rendezés
+             */
+
+            /*
+             Beillesztéses rendezés
+
+            Bemenet: x - T tömb, ahol T összehasonlítható
+            Kimenet: x - T rendezett tömb   (ref)
+                eljárás BeillesztésesRendezés(címszerint x)
+                    ciklus i <- 2-től n-ig -> 1..N
+                       j <- i - 1
+                       ciklus amíg (j > 0) && (x[j] > [j+1])
+                          x[j] <-> x[j+1]
+                          j <- j - 1
+                       ciklus vége
+                    ciklus vége
+                eljárás vége
+             */ 
+        }
+    }
+}
