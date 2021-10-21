@@ -1,0 +1,89 @@
+using System;
+
+namespace Matrix_masodik_hazi
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string rowCol = Console.ReadLine();
+            string[] rowColSplit = rowCol.Split(' ');
+            int[] rcint = Array.ConvertAll(rowColSplit, int.Parse);
+            int row = rcint[0];
+            int col = rcint[1];
+            int sor = row;
+            string[] elsoTomb = new string[row];
+            while (sor <= row)
+            {
+                for (int j = 0; j < sor; j++)
+                {
+                    elsoTomb[j] = Console.ReadLine();
+                }
+                sor++;
+            }
+            sor = 0;
+            int db = 0;
+            char[] ujBetuk = new char[row * col];
+            for (int i = 0; i < elsoTomb.Length; i++)
+            {
+                string szo = elsoTomb[i];
+                for (int j = 0; j < col; j++)
+                {
+                    ujBetuk[db] = szo[j];
+                    db++;
+                }
+            }
+            char[,] matrix = new char[row, col];
+            MatrixFeltoltes(matrix, ujBetuk, row, col);
+            MatrixKiiras(row, col, matrix);
+        }
+        static void MatrixFeltoltes(char[,] matrix, char[] ujBetuk, int row, int col)
+        {
+            int db = 0;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[i, j] = ujBetuk[db];
+                    db++;
+                }
+            }
+        }
+        static void MatrixKiiras(int row, int col, char[,] matrix)
+        {
+            int elsoSor = 0;
+            int elsoOszlop = 0;
+            int sor = row - 1;
+            int oszlop = col - 1;
+            while(sor >= elsoSor && oszlop >= elsoOszlop)
+            {
+                for (int i = sor; i >= elsoSor; i--)
+                {
+                    Console.Write(matrix[i, elsoOszlop]);
+                }
+                elsoOszlop++;
+                for (int i = elsoOszlop; i <= oszlop; i++)
+                {
+                    Console.Write(matrix[elsoSor,i]);
+                }
+                elsoSor++;
+                if (elsoSor <= sor)
+                {
+                    for (int i = elsoSor; i <= sor ; i++)
+                    {
+                        Console.Write(matrix[i,oszlop]);
+                    }
+                    oszlop--;
+                }
+                if (elsoOszlop <= oszlop)
+                {
+                    for (int i = oszlop; i >= elsoSor; i--)
+                    {
+                        Console.Write(matrix[sor, i]);
+                    }
+                    sor--;
+                }
+            }           
+        }
+    }
+}
