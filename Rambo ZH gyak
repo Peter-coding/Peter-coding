@@ -1,0 +1,88 @@
+using System;
+
+namespace Rambo_ZH_gyakorlas
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = 10;
+            string[,] ajanlatok = new string[n, 3];
+            double vagyon = 5000.0;
+        }
+        static bool VanIlyenID(string[,] ajanlatok, string ID)
+        {
+            bool letezik = false;
+            int i = 0;
+            int j = 1;
+            while (i < ajanlatok.GetLength(0))
+            {
+                if (ajanlatok[i,j] == ID)
+                {
+                    letezik = true;
+                }
+                i++;
+            }
+            return letezik;
+        }
+        static void UjAjanlatotRogzit(string[,] ajanlatok, int sor, string modell, string ID, double ar)
+        {
+            for (int i = sor; i < ajanlatok.GetLength(0); i++)
+            {
+                ajanlatok[i, 0] = modell;
+                ajanlatok[i, 1] = ID;
+                ajanlatok[i, 2] = ar.ToString();
+            }
+        }
+        static string[] AjanlatokToString(string[,] ajanlatok)
+        {
+            string[] repulogepInfo = new string[ajanlatok.GetLength(0)];
+            string info = "";
+            for (int i = 0; i < ajanlatok.GetLength(0); i++)
+            {
+                info += ajanlatok[i, 0] + "(" + ajanlatok[i,1] + ") - " + ajanlatok[i,2];
+                repulogepInfo[i] += info;
+            }
+            return repulogepInfo;
+        }
+        static bool ArakOsszesitese(string[,] ajanlatok, double vagyon)
+        {
+            bool elegPenzeVan = false;
+            double megtakaritas = 0;
+            for (int i = 0; i < ajanlatok.GetLength(0); i++)
+            {
+                megtakaritas += Convert.ToDouble(ajanlatok[i, 2]);
+            }
+            if(megtakaritas >= vagyon)
+            {
+                elegPenzeVan = true;
+            }
+            return elegPenzeVan;
+        }
+        static string[] Elovalogatas(string[,] ajanlatok)
+        {
+            //A visszaadott tömb mérete egyezzen meg annak valódi elemszámával, azaz ne legyenek benne üres elemek.
+            return null;
+        }
+        static string LegolcsobbTipus(string[,] ajanlatok)
+        {
+            double legolcsobb = Convert.ToDouble(ajanlatok[0,2]);
+            int idx = 0;
+            for (int i = 0; i < ajanlatok.GetLength(0); i++)
+            {
+                double jelenlegi = Convert.ToDouble(ajanlatok[0, 2]);
+                if (jelenlegi < legolcsobb)
+                {
+                    legolcsobb = Convert.ToDouble(ajanlatok[0, 2]);
+                    idx = i;
+                }
+            }
+            return ajanlatok[idx, 0];
+        }
+        static string AjanlatokRendezese(string[,] ajanlatok, int n)
+        {
+            string[] legolcsobbak = new string[n];
+            return null;
+        }
+    }
+}
